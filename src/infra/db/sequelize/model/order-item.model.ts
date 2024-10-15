@@ -40,5 +40,5 @@ import OrderModel from "./order.model";
     declare name: string;
 
     @Column({ allowNull: false})
-    declare total: number;
+    declare price: number;
   }

@@ -50,7 +50,7 @@ export default class OrderRepository implements OrderRepositoryInterface{
     return new Order(
       order.id,
       order.customer_id,
-      order.items.map((item) => new OrderItem(item.id, item.product_id, item.name, item.total, item.quantity)),
+      order.total),
     );
   }
 
@@ -58,6 +58,6 @@ export default class OrderRepository implements OrderRepositoryInterface{
     const orders = await OrderModel.findAll();
 
     return orders.map((order) => new Order(order.id, order.customer_id, order.items.map(
-      (item) => new OrderItem(item.id, item.product_id, item.name, item.total, item.quantity))));
+      (item) => new OrderItem(item.id, item.product_id, item.name, item.price, item.quantity))));
   }
 }
