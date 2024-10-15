@@ -169,14 +169,14 @@ describe("Order repository test", () => {
 
       orderRepository.create(order);
 
-      const orderModel = await OrderModel.findOne({where: {id: "1"}});
+      const orderModel = await OrderModel.findOne({where: {id: order.id}, include: ["items"]});
       const foundOrder = await orderRepository.find("1");
 
-      expect(orderModel.toJSON).toStrictEqual({
+      expect(orderModel.toJSON()).toStrictEqual({
         id: foundOrder.id,
         customer_id: foundOrder.customerId,
-        total: foundOrder.total(),
         items: foundOrder.items,
+        total: foundOrder.total(),
       });
     });
   
